@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyBirthdayApp.Views.EditPage"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib" 
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:models="clr-namespace:MyBirthdayApp.Models"
+             xmlns:viewmodel="clr-namespace:MyBirthdayApp.ViewModel"
+             x:DataType="viewmodel:EditViewModel"            
+             Title="Edit">
+    <Grid RowDefinitions="*,*,*,*,*,*,*,*,50"
+          ColumnDefinitions=".10*,.90*"
+          Padding="10"
+          RowSpacing="10"
+          ColumnSpacing="10">
+        
+        <Entry Placeholder="ID"
+               IsEnabled="False"
+               IsVisible="false"
+               Text="{Binding EditId, Mode=TwoWay}"
+                x:Name="idEntry"
+               FontSize="16"
+               ClearButtonVisibility="WhileEditing"              
+               Grid.Row="0"
+               Grid.Column="2"/>
+        
+        <Label FontFamily="FaRegular"
+               Text="{x:Static models:FaRegularIcons.User}"
+               Grid.Row="1"
+               Grid.Column="0"
+               VerticalTextAlignment="Center"
+               HorizontalTextAlignment="Center"
+               FontSize="Medium"
+            />
+
+        <Entry Placeholder="Enter First Name"
+               x:Name="firstNameEntry"
+               Text="{Binding EditFirstName, Mode=TwoWay}"
+               FontSize="16"
+               VerticalTextAlignment="Center"                              
+               Grid.Row="1"
+               Grid.Column="1">
+            <Entry.Behaviors>
+                <toolkit:TextValidationBehavior 
+                InvalidStyle="{StaticResource InvalidEntryStyle}"
+                ValidStyle="{StaticResource ValidEntryStyle}"
+                Flags="ValidateOnValueChanged"
+                MinimumLength="1"
+                MaximumLength="100"
+                RegexPattern="[^0-9]"
+                DecorationFlags="Trim"                
+                />
+            </Entry.Behaviors>
+        </Entry>
+
+        <Label FontFamily="FaRegular"
+               Text="{x:Static models:FaRegularIcons.User}"               
+               Grid.Row="2"
+               Grid.Column="0"
+               VerticalTextAlignment="Center"
+               HorizontalTextAlignment="Center"
+               FontSize="Medium"
+            />
+
+        <Entry Placeholder="Enter Last Name"
+               Text="{Binding EditLastName, Mode=TwoWay}"
+                x:Name="lastNameEntry"
+               FontSize="16"
+               ClearButtonVisibility="WhileEditing"              
+               Grid.Row="2"
+               Grid.Column="2"/>
+
+        <Label FontFamily="FaRegular"               
+               Text="{x:Static models:FaRegularIcons.CalendarDays}"
+               Grid.Row="3"
+               Grid.Column="0"
+               VerticalTextAlignment="Center"
+               HorizontalTextAlignment="Center"
+               FontSize="Medium"
+            />
+
+        <DatePicker VerticalOptions="CenterAndExpand"
+                    Date="{Binding EditDob}"
+                     x:Name="dobPicker"
+                    FontSize="16"
+                    Margin="0,0,0,10"
+                    Grid.Row="3"
+                    Grid.Column="2"
+                    MaximumDate="{x:Static sys:DateTime.Today}"/>
+
+        <Label FontFamily="FaRegular"               
+               Text="{x:Static models:FaRegularIcons.Envelope}"
+               Grid.Row="4"
+               Grid.Column="0"
+               VerticalTextAlignment="Center"
+               HorizontalTextAlignment="Center"
+               FontSize="Medium"
+            />
+
+        <Entry Placeholder="Enter Email"
+               Keyboard="Email"
+                x:Name="emailEntry"
+               FontSize="16"
+               Text="{Binding EditEmail, Mode=TwoWay}"
+               Margin="0,0,0,10"
+               ClearButtonVisibility="WhileEditing"
+               Grid.Row="4"
+               Grid.Column="2" />
+
+        <Label FontFamily="FaSolid"               
+               Text="{x:Static models:FaSolidIcons.Phone}"
+               Grid.Row="5"
+               Grid.Column="0"
+               VerticalTextAlignment="Center"
+               HorizontalTextAlignment="Center"
+               FontSize="Medium"
+            />
+
+        <Entry  x:Name="phoneEntry"
+               Placeholder="Enter Phone Number"
+               Keyboard="Telephone"
+               FontSize="16"
+               VerticalTextAlignment="Center"
+               HorizontalTextAlignment="Start"
+               Text="{Binding EditPhone, Mode=TwoWay}"
+               Margin="0,0,0,20"
+               ClearButtonVisibility="WhileEditing"
+               Grid.Row="5"
+               Grid.Column="2"/>
+
+        <Button Text="Edit Person"
+                Command="{Binding EditCommand}"               
+                BackgroundColor="#2196F3"
+                TextColor="White"
+                FontSize="18"
+                CornerRadius="8"
+                HeightRequest="50"
+                HorizontalOptions="FillAndExpand"
+                Margin="0,0,0,10"
+                Grid.Row="7" Grid.ColumnSpan="2"/>
+
+        <Button Text="Clear"
+                Command="{Binding ClearCommand}"
+                BackgroundColor="#CCCCCC"
+                TextColor="Black"
+                FontSize="18"
+                CornerRadius="8"
+                HeightRequest="50"
+                HorizontalOptions="FillAndExpand"
+                Grid.Row="8" Grid.ColumnSpan="2"/>
+    </Grid>
+    <ContentPage.Resources>
+        <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Red" />
+        </Style>
+        <Style x:Key="ValidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Green" />
+        </Style>
+    </ContentPage.Resources>
+</ContentPage>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyBirthdayApp.Views.DetailPage"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib" 
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:models="clr-namespace:MyBirthdayApp.Models"
+             xmlns:viewmodel="clr-namespace:MyBirthdayApp.ViewModel"
+             Title="DetailPage">
+    
+    <Grid RowDefinitions="*,*,*,*,*,*,*,*,50"
+          ColumnDefinitions=".10*,.90*"
+          Padding="10"
+          RowSpacing="10"
+          ColumnSpacing="10">
+       
+        <Label  x:Name="lbDetailId"
+                IsEnabled="False"
+                IsVisible="false"
+                Text="{Binding DetailId}"
+                FontSize="16"
+                Grid.Row="1"
+                Grid.Column="1"
+                VerticalTextAlignment="Center"
+                HorizontalTextAlignment="Center"               
+            />
+
+        <Label FontFamily="FaRegular"
+               Text="{x:Static models:FaRegularIcons.User}"
+               Grid.Row="1"
+               Grid.Column="0"
+               VerticalTextAlignment="Center"
+               HorizontalTextAlignment="Center"
+               FontSize="Medium"
+            />
+
+        <Label  x:Name="lbDetailFirstName"
+                Text="{Binding DetailFirstName}"
+                FontSize="16"
+                Grid.Row="1"
+                Grid.Column="1"
+                VerticalTextAlignment="Center"
+                HorizontalTextAlignment="Center"               
+            />        
+
+        <Label FontFamily="FaRegular"
+               Text="{x:Static models:FaRegularIcons.User}"               
+               Grid.Row="2"
+               Grid.Column="0"
+               VerticalTextAlignment="Center"
+               HorizontalTextAlignment="Center"
+               FontSize="Medium"
+            />
+
+        <Label  x:Name="lbDetailLastName"
+                Text="{Binding DetailLastName}"
+                FontSize="16"
+                Grid.Row="2"
+                Grid.Column="1"
+                VerticalTextAlignment="Center"
+                HorizontalTextAlignment="Center"               
+            />
+
+        <Label FontFamily="FaRegular"               
+               Text="{x:Static models:FaRegularIcons.CalendarDays}"
+               Grid.Row="3"
+               Grid.Column="0"
+               VerticalTextAlignment="Center"
+               HorizontalTextAlignment="Center"
+               FontSize="Medium"
+            />
+
+        <Label  x:Name="lbDetailDob"
+                Text="{Binding DetailDob}"
+                FontSize="16"
+                Grid.Row="3"
+                Grid.Column="1"
+                VerticalTextAlignment="Center"
+                HorizontalTextAlignment="Center"               
+            />        
+
+        <Label FontFamily="FaRegular"               
+               Text="{x:Static models:FaRegularIcons.Envelope}"
+               Grid.Row="4"
+               Grid.Column="0"
+               VerticalTextAlignment="Center"
+               HorizontalTextAlignment="Center"
+               FontSize="Medium"
+            />
+
+        <Label  x:Name="lbDetailEmail"
+                Text="{Binding DetailEmail}"
+                FontSize="16"
+                Grid.Row="4"
+                Grid.Column="1"
+                VerticalTextAlignment="Center"
+                HorizontalTextAlignment="Center"               
+            />       
+
+        <Label FontFamily="FaSolid"               
+               Text="{x:Static models:FaSolidIcons.Phone}"
+               Grid.Row="5"
+               Grid.Column="0"
+               VerticalTextAlignment="Center"
+               HorizontalTextAlignment="Center"
+               FontSize="Medium"
+            />
+        
+        <Label  x:Name="lbDetailPhone"
+                Text="{Binding DetailPhone}"
+                FontSize="16"
+                Grid.Row="5"
+                Grid.Column="1"
+                VerticalTextAlignment="Center"
+                HorizontalTextAlignment="Center"               
+            />  
+
+        <Button Text="Back"
+                Command="{Binding GoBackCommand}"               
+                BackgroundColor="Red"
+                TextColor="Black"
+                FontSize="18"
+                CornerRadius="8"
+                HeightRequest="50"
+                HorizontalOptions="FillAndExpand"
+                Margin="0,0,0,10"
+                Grid.Row="7" Grid.ColumnSpan="2"/>       
+    </Grid>
+</ContentPage>

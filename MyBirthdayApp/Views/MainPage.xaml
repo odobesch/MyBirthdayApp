@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyBirthdayApp.Views.MainPage" 
+             xmlns:model="clr-namespace:MyBirthdayApp.Models"
+             xmlns:conv="using:MyBirthdayApp.Converters" 
+             x:Name="thisPage"
+             Title="MainPage">
+
+
+    <Grid RowDefinitions="20,*,50"          
+          Padding="10"
+          RowSpacing="10"
+          Margin="10"
+          >
+
+        <Button Grid.Row="2" Grid.ColumnSpan="2" Text="Add Person" Command="{Binding AddCommand}" />
+
+        <CollectionView x:Name="mainCollection" Grid.Row="1" ItemsSource="{Binding Items}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:Person">
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Delete"
+                                           Command="{Binding BindingContext.DeleteCommand, Source={RelativeSource AncestorType={x:Type CollectionView}}}"
+                                           CommandParameter="{Binding .}"
+                                           BackgroundColor="Red"/>
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <SwipeView.LeftItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Edit"
+                                           Command="{Binding BindingContext.EditCommand, Source={RelativeSource AncestorType={x:Type CollectionView}}}"
+                                           CommandParameter="{Binding .}"                                          
+                                           BackgroundColor="Blue"
+                                    />
+                            </SwipeItems>
+                        </SwipeView.LeftItems>
+                        <Frame >
+                            <Grid ColumnDefinitions=".20*,.80*">
+                                <VerticalStackLayout Grid.Column="1">
+                                    <Label IsVisible="false" Text="{Binding Id, StringFormat='ID: {0}'}" Grid.Row="0" Grid.Column="0"></Label>
+                                    <Label Text="{Binding FirstName, StringFormat='First Name: {0}'}" Grid.Row="0" Grid.Column="0"></Label>
+                                    <Label Text="{Binding LastName, StringFormat='Last Name: {0}'}" Grid.Row="0" Grid.Column="1"></Label>
+                                    <Label Text="{Binding Email, StringFormat='Email: {0}'}" Grid.Row="1" Grid.Column="1"></Label>
+                                    <Label Text="{Binding Phone, StringFormat='Phone Number: {0}'}" Grid.Row="2" Grid.Column="1"></Label>
+                                    <Label Text="{Binding Dob, StringFormat='Date of Birth: {0}'}" Grid.Row="3" Grid.Column="1"></Label>
+                                    <Label Text="{Binding Dob,Converter={StaticResource DobToAgeConverter},ConverterParameter={Binding Dob},StringFormat='Age: {0}'}" Grid.Row="4" Grid.Column="1"></Label>
+                                </VerticalStackLayout>
+                            </Grid>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" 
+                                                      CommandParameter="{Binding .}"
+                                                      Command="{Binding BindingContext.TapCommand, Source={RelativeSource AncestorType={x:Type CollectionView}}}"/>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <conv:AgeConverter x:Key="DobToAgeConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+</ContentPage>

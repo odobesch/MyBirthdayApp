@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MyBirthdayApp.Views.DeletePage"             
+             xmlns:viewmodel="clr-namespace:MyBirthdayApp.ViewModel"
+             x:DataType="viewmodel:DeleteViewModel"
+             Title="Delete">
+    
+    <Grid RowDefinitions="50,50"
+          ColumnDefinitions=".50*,.50*"
+          Padding="10"
+          RowSpacing="10"
+          ColumnSpacing="10">
+        <Label 
+            Grid.Row="0"
+            Text="Are you sure to delete this person?"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Button Grid.Row="1" Grid.Column="0" Text="Delete" Command="{Binding DeleteCommand}" CommandParameter="{Binding Person}"/>
+        <Button Grid.Row="1" Grid.Column="1" Text="Cancel" Command="{Binding CancelCommand}"/>
+    </Grid>
+</ContentPage>
